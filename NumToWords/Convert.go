@@ -17,14 +17,19 @@ func Convert(Input int, Language string) (string, error) {
 	Entry := new(Entry)
 	Entry.Language = Language
 	Entry.BootstrapLanguage()
+	if IsZero(Input) {
+		return Entry.LocalizedEntity.Zero, nil
+	}
 	return Entry.Calculate(Input), nil
+}
+
+func IsZero(Input int) bool {
+	return Input == 0
 }
 
 func (Entry Entry) Calculate(Input int) string {
 	result := ""
-	if Input == 0 {
-		result = Entry.LocalizedEntity.Zero
-	} else if Input < 10 {
+	if Input < 10 {
 		result = Entry.LocalizedEntity.Units[Input]
 	} else if Input < 20 {
 		result = Entry.LocalizedEntity.Teens[Input-10]
