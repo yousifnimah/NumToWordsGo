@@ -9,4 +9,5 @@ type Lang struct {
 	Thousand string
 	Million  string
 	Billion  string
+	Trillion string
 }

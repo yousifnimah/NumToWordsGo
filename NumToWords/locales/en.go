@@ -9,4 +9,5 @@ var EN = Lang{
 	Thousand: "thousand",
 	Million:  "million",
 	Billion:  "billion",
+	Trillion: "trillion",
 }

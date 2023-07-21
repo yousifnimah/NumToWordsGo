@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	input := 1500000
+	input := 1000000000000
 	words, err := NumToWords.Convert(input, "en")
 	if err != nil {
 		return
