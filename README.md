@@ -80,7 +80,7 @@ Output:
 ![img.png](https://i.imgur.com/g0kPxcB.png)
 ![img.png](https://i.imgur.com/IJyLyrn.gif)
 
-In the example above, we import the NumToWordsGo package and use the NumToWords function to convert the number 123456789 into its word representation. The result is then printed to the console.
+***In the example above***, we import the NumToWordsGo package and use the NumToWords function to convert the number 50010 into its word representation. The result is then printed to the console.
 
 
 ## License
