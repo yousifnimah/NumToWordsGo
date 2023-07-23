@@ -13,7 +13,7 @@ var AR = Lang{
 	And:              "و",
 	Zero:             "صفر",
 	Hundred:          "مئة",
-	Thousand:         "الف",
+	Thousand:         "الفاً",
 	Million:          "مليون",
 	Billion:          "مليار",
 }

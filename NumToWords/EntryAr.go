@@ -31,18 +31,18 @@ func (Entry *EntryAr) Translate(Input int) string {
 		{
 			Result = Entry.handleHundreds(Input)
 		}
-	case Input < 10000: //1000-9999
+	case Input < 1000000: //1000-9999
 		{
 			Result = Entry.handleThousands(Input)
 		}
-	case Input < 100000: //10000-99999
-		{
-			Result = Entry.handleTenThousands(Input)
-		}
-	case Input < 1000000: //100000-999999
-		{
-			Result = Entry.handleHundredsThousands(Input)
-		}
+	//case Input < 100000: //10000-99999
+	//	{
+	//		Result = Entry.handleTenThousands(Input)
+	//	}
+	//case Input < 1000000: //100000-999999
+	//	{
+	//		Result = Entry.handleHundredsThousands(Input)
+	//	}
 	case Input < 1000000000: //1000000-9999999
 		{
 			Result = Entry.handleMillions(Input)
@@ -52,29 +52,6 @@ func (Entry *EntryAr) Translate(Input int) string {
 			Result = Entry.handleBillions(Input)
 		}
 	}
-
-	//if Input < 10 {
-	//	result = Entry.handleUnits(Input)
-	//} else if Input < 20 {
-	//	result = Entry.LocalizedEntity.Teens[Input-10]
-	//} else if Input < 100 {
-	//	Seg01 := Entry.Translate(Input % 10)
-	//	Seg02 := Entry.LocalizedEntity.Tens[Input/10]
-	//	if Seg01 != "" && Seg02 != "" {
-	//		And = Entry.LocalizedEntity.And
-	//	}
-	//	result = fmt.Sprintf("%s %s %s", Seg01, And, Seg02)
-	//} else if Input < 1000 {
-	//	result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/100), Entry.LocalizedEntity.Hundred, Entry.Translate(Input%100))
-	//} else if Input < 1000000 {
-	//	result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000), Entry.LocalizedEntity.Thousand, Entry.Translate(Input%1000))
-	//} else if Input < 1000000000 {
-	//	result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000000), Entry.LocalizedEntity.Million, Entry.Translate(Input%1000000))
-	//} else if Input < 10000000000 {
-	//	result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000000000), Entry.LocalizedEntity.Billion, Entry.Translate(Input%1000000000))
-	//} else {
-	//	result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000000000000), Entry.LocalizedEntity.Trillion, Entry.Translate(Input%1000000000000))
-	//}
 	return strings.TrimSpace(Result)
 }
 
@@ -109,12 +86,12 @@ func (EntAr EntryAr) handleHundreds(Input int) string {
 
 func (EntAr EntryAr) handleThousands(Input int) string {
 	And := ""
-	Seg01 := EntAr.LocalizedEntity.Thousands[(Input / 1000)]
+	Seg01 := EntAr.Translate(Input / 1000)
 	Seg03 := EntAr.Translate(Input % 1000)
 	if Seg01 != "" && Seg03 != "" {
 		And = EntAr.LocalizedEntity.And
 	}
-	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
+	return fmt.Sprintf("%s %s %s %s", Seg01, EntAr.LocalizedEntity.Thousand, And, Seg03)
 }
 
 func (EntAr EntryAr) handleTenThousands(Input int) string {
