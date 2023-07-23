@@ -2,6 +2,7 @@ package NumToWords
 
 import (
 	"errors"
+	"fmt"
 )
 
 type NumToWord struct{}
@@ -25,6 +26,7 @@ func Convert(Input int, Language string) (string, error) {
 	Ent.BootstrapLanguage()
 
 	if IsZero(Input) {
+		fmt.Println("Input")
 		return Ent.ZeroResponse(), nil
 	}
 
