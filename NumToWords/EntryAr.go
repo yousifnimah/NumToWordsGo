@@ -47,6 +47,10 @@ func (Entry *EntryAr) Translate(Input int) string {
 		{
 			Result = Entry.handleMillions(Input)
 		}
+	case Input < 1000000000000: //1000000000-9999999999
+		{
+			Result = Entry.handleBillions(Input)
+		}
 	}
 
 	//if Input < 10 {
@@ -137,6 +141,16 @@ func (EntAr EntryAr) handleMillions(Input int) string {
 	And := ""
 	Seg01 := EntAr.LocalizedEntity.Millions[(Input / 1000000)]
 	Seg03 := EntAr.Translate(Input % 1000000)
+	if Seg01 != "" && Seg03 != "" {
+		And = EntAr.LocalizedEntity.And
+	}
+	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
+}
+
+func (EntAr EntryAr) handleBillions(Input int) string {
+	And := ""
+	Seg01 := EntAr.LocalizedEntity.Billions[(Input / 1000000000)]
+	Seg03 := EntAr.Translate(Input % 1000000000)
 	if Seg01 != "" && Seg03 != "" {
 		And = EntAr.LocalizedEntity.And
 	}
