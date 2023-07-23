@@ -31,10 +31,10 @@ func (Entry *EntryAr) Translate(Input int) string {
 		{
 			Result = Entry.handleHundreds(Input)
 		}
-		//case Input < 100000: //1000-9999
-		//	{
-		//		Result = Entry.handleTeens(Input)
-		//	}
+	case Input < 100000: //1000-9999
+		{
+			Result = Entry.handleThousands(Input)
+		}
 	}
 
 	//if Input < 10 {
@@ -83,12 +83,21 @@ func (EntAr EntryAr) handleTwenties(Input int) string {
 func (EntAr EntryAr) handleHundreds(Input int) string {
 	And := ""
 	Seg01 := EntAr.LocalizedEntity.Hundreds[(Input / 100)]
-	//Seg02 := EntAr.LocalizedEntity.Hundred
-	Seg03 := EntAr.Translate(Input % 100)
-	if Seg01 != "" && Seg03 != "" {
+	Seg02 := EntAr.Translate(Input % 100)
+	if Seg01 != "" && Seg02 != "" {
 		And = EntAr.LocalizedEntity.And
 	}
 
+	return fmt.Sprintf("%s %s %s", Seg01, And, Seg02)
+}
+
+func (EntAr EntryAr) handleThousands(Input int) string {
+	And := ""
+	Seg01 := EntAr.LocalizedEntity.Thousands[(Input / 1000)]
+	Seg03 := EntAr.Translate(Input % 1000)
+	if Seg01 != "" && Seg03 != "" {
+		And = EntAr.LocalizedEntity.And
+	}
 	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
 }
 

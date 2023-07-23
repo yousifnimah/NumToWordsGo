@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	input := 656
+	input := 9824
 	words, err := NumToWords.Convert(input, "ar")
 	if err != nil {
 		return
