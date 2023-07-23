@@ -94,26 +94,6 @@ func (EntAr EntryAr) handleThousands(Input int) string {
 	return fmt.Sprintf("%s %s %s %s", Seg01, EntAr.LocalizedEntity.Thousand, And, Seg03)
 }
 
-func (EntAr EntryAr) handleTenThousands(Input int) string {
-	And := ""
-	Seg01 := EntAr.LocalizedEntity.TenThousands[(Input / 10000)]
-	Seg03 := EntAr.Translate(Input % 10000)
-	if Seg01 != "" && Seg03 != "" {
-		And = EntAr.LocalizedEntity.And
-	}
-	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
-}
-
-func (EntAr EntryAr) handleHundredsThousands(Input int) string {
-	And := ""
-	Seg01 := EntAr.LocalizedEntity.HundredThousands[(Input / 100000)]
-	Seg03 := EntAr.Translate(Input % 100000)
-	if Seg01 != "" && Seg03 != "" {
-		And = EntAr.LocalizedEntity.And
-	}
-	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
-}
-
 func (EntAr EntryAr) handleMillions(Input int) string {
 	And := ""
 	Seg01 := EntAr.LocalizedEntity.Millions[(Input / 1000000)]
