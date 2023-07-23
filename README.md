@@ -10,6 +10,7 @@ NumToWordsGo is a lightweight and efficient Go library that provides a simple fu
 - Convert numbers to their word representation
 - Supports numbers up to billions
 - Efficient and easy-to-use
+- Supports two languages English and Arabic
 
 ## Installation
 
@@ -19,8 +20,7 @@ To use NumToWordsGo in your Go project, you need to install it using `go get` co
 go get github.com/yousifnimah/NumToWordsGo
 ```
 
-
-## Usage
+## English Language Usage
 
 Here's an example of how to use NumToWordsGo in your Go code:
 
@@ -34,7 +34,8 @@ import (
 
 func main() {
 	input := 123456789
-	words, err := NumToWords.Convert(input, "en")
+	LanguageCode := "en"
+	words, err := NumToWords.Convert(input, LanguageCode)
 	if err != nil {
 		return
 	}
@@ -47,7 +48,39 @@ Output:
 one hundred twenty three million four hundred fifty six thousand seven hundred eighty nine
 ```
 
-In the example above, we import the NumToWordsGo package and use the NumToWords function to convert the number 123456789 into its word representation. The result is then printed to the console.
+## Arabic Language Usage
+
+Here's an example of how to use NumToWordsGo in your Go code:
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/yousifnimah/NumToWordsGo/NumToWords"
+)
+
+func main() {
+	input := 50010
+	LanguageCode := "ar"
+	words, err := NumToWords.Convert(input, LanguageCode)
+	if err != nil {
+		return
+	}
+	fmt.Println(words)
+}
+```
+
+Output:
+```go
+خمسون ألف و عشرة
+```
+
+## Screenshot:
+![img.png](https://i.imgur.com/g0kPxcB.png)
+![img.png](https://i.imgur.com/IJyLyrn.gif)
+
+***In the example above***, we import the NumToWordsGo package and use the NumToWords function to convert the number 50010 into its word representation. The result is then printed to the console.
 
 
 ## License
