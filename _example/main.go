@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-	input := 10000000
-	words, err := NumToWords.Convert(input, "ar")
+	input := 1000
+	words, err := NumToWords.Convert(input, "en")
 	if err != nil {
 		return
 	}
