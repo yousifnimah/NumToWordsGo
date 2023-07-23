@@ -9,6 +9,7 @@ type Lang struct {
 	TenThousands     []string
 	HundredThousands []string
 	Millions         []string
+	Billions         []string
 	And              string
 	Zero             string
 	Hundred          string
