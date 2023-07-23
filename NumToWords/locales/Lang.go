@@ -4,6 +4,7 @@ type Lang struct {
 	Units    []string
 	Teens    []string
 	Tens     []string
+	Hundreds []string
 	And      string
 	Zero     string
 	Hundred  string
