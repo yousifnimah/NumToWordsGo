@@ -13,7 +13,6 @@ type EntryAr struct {
 
 func (Entry *EntryAr) Translate(Input int) string {
 	Result := ""
-
 	switch {
 	case Input < 10: //0-9
 		{
@@ -35,14 +34,6 @@ func (Entry *EntryAr) Translate(Input int) string {
 		{
 			Result = Entry.handleThousands(Input)
 		}
-	//case Input < 100000: //10000-99999
-	//	{
-	//		Result = Entry.handleTenThousands(Input)
-	//	}
-	//case Input < 1000000: //100000-999999
-	//	{
-	//		Result = Entry.handleHundredsThousands(Input)
-	//	}
 	case Input < 1000000000: //1000000-9999999
 		{
 			Result = Entry.handleMillions(Input)
@@ -85,33 +76,72 @@ func (EntAr EntryAr) handleHundreds(Input int) string {
 }
 
 func (EntAr EntryAr) handleThousands(Input int) string {
+	var Seg01 string
+	var Seg03 string
+	var result string
 	And := ""
-	Seg01 := EntAr.Translate(Input / 1000)
-	Seg03 := EntAr.Translate(Input % 1000)
-	if Seg01 != "" && Seg03 != "" {
-		And = EntAr.LocalizedEntity.And
+	if Input/1000 > 2 {
+		Seg01 = EntAr.Translate(Input / 1000)
+		Seg03 = EntAr.Translate(Input % 1000)
+		if Seg01 != "" && Seg03 != "" {
+			And = EntAr.LocalizedEntity.And
+		}
+		result = fmt.Sprintf("%s %s %s %s", Seg01, EntAr.LocalizedEntity.Thousand, And, Seg03)
+	} else {
+		Seg01 = EntAr.LocalizedEntity.Thousands[(Input / 1000)]
+		Seg03 = EntAr.Translate(Input % 1000)
+		if Seg01 != "" && Seg03 != "" {
+			And = EntAr.LocalizedEntity.And
+		}
+		result = fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
 	}
-	return fmt.Sprintf("%s %s %s %s", Seg01, EntAr.LocalizedEntity.Thousand, And, Seg03)
+	return result
 }
 
 func (EntAr EntryAr) handleMillions(Input int) string {
+	var Seg01 string
+	var Seg03 string
+	var result string
 	And := ""
-	Seg01 := EntAr.LocalizedEntity.Millions[(Input / 1000000)]
-	Seg03 := EntAr.Translate(Input % 1000000)
-	if Seg01 != "" && Seg03 != "" {
-		And = EntAr.LocalizedEntity.And
+	if Input/1000000 > 2 {
+		Seg01 = EntAr.Translate(Input / 1000000)
+		Seg03 = EntAr.Translate(Input % 1000000)
+		if Seg01 != "" && Seg03 != "" {
+			And = EntAr.LocalizedEntity.And
+		}
+		result = fmt.Sprintf("%s %s %s %s", Seg01, EntAr.LocalizedEntity.Million, And, Seg03)
+	} else {
+		Seg01 = EntAr.LocalizedEntity.Millions[(Input / 1000000)]
+		Seg03 = EntAr.Translate(Input % 1000000)
+		if Seg01 != "" && Seg03 != "" {
+			And = EntAr.LocalizedEntity.And
+		}
+		result = fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
 	}
-	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
+	return result
 }
 
 func (EntAr EntryAr) handleBillions(Input int) string {
+	var Seg01 string
+	var Seg03 string
+	var result string
 	And := ""
-	Seg01 := EntAr.LocalizedEntity.Billions[(Input / 1000000000)]
-	Seg03 := EntAr.Translate(Input % 1000000000)
-	if Seg01 != "" && Seg03 != "" {
-		And = EntAr.LocalizedEntity.And
+	if Input/1000000000 > 2 {
+		Seg01 = EntAr.Translate(Input / 1000000000)
+		Seg03 = EntAr.Translate(Input % 1000000000)
+		if Seg01 != "" && Seg03 != "" {
+			And = EntAr.LocalizedEntity.And
+		}
+		result = fmt.Sprintf("%s %s %s %s", Seg01, EntAr.LocalizedEntity.Billion, And, Seg03)
+	} else {
+		Seg01 = EntAr.LocalizedEntity.Billions[(Input / 1000000000)]
+		Seg03 = EntAr.Translate(Input % 1000000000)
+		if Seg01 != "" && Seg03 != "" {
+			And = EntAr.LocalizedEntity.And
+		}
+		result = fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
 	}
-	return fmt.Sprintf("%s %s %s", Seg01, And, Seg03)
+	return result
 }
 
 func (Entry EntryAr) ZeroResponse() string {
