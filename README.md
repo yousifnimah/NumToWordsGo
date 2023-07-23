@@ -1,7 +1,4 @@
 # NumToWordsGo
-<img src="https://i.imgur.com/S8iiTSg.png" height="300">
-
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 NumToWordsGo is a lightweight and efficient Go library that provides a simple function to convert numeric values into their corresponding word representation. With this library, you can easily convert numbers to words, making it useful for applications that require human-readable number formatting or text generation.
 
