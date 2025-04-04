@@ -25,10 +25,10 @@ func (Entry EntryEn) Translate(Input int) string {
 		result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000), Entry.LocalizedEntity.Thousand, Entry.Translate(Input%1000))
 	} else if Input < 1000000000 {
 		result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000000), Entry.LocalizedEntity.Million, Entry.Translate(Input%1000000))
-	} else if Input < 10000000000 {
+	} else if int64(Input) < 10000000000 {
 		result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000000000), Entry.LocalizedEntity.Billion, Entry.Translate(Input%1000000000))
 	} else {
-		result = fmt.Sprintf("%s %s %s", Entry.Translate(Input/1000000000000), Entry.LocalizedEntity.Trillion, Entry.Translate(Input%1000000000000))
+		result = fmt.Sprintf("%s %s %s", Entry.Translate(int(int64(Input)/1000000000000)), Entry.LocalizedEntity.Trillion, Entry.Translate(int(int64(Input)%1000000000000)))
 	}
 	return strings.TrimSpace(result)
 }
