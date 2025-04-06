@@ -26,7 +26,7 @@ func Convert(Input int, Language string) (string, error) {
 	Ent.BootstrapLanguage()
 
 	if IsZero(Input) {
-		fmt.Println("Input")
+		//fmt.Println("Input")
 		return Ent.ZeroResponse(), nil
 	}
 
