@@ -29,7 +29,7 @@ func (Entry EntryDe) Translate(Input int) string {
 		result = Entry.handleThousands(Input)
 	case Input < 1000000000:
 		result = Entry.handleMillions(Input)
-	case Input < 1000000000000:
+	case int64(Input) < 1000000000000:
 		result = Entry.handleBillions(Input)
 	default:
 		result = Entry.handleTrillions(Input)
@@ -101,7 +101,7 @@ func (Entry EntryDe) handleMillions(Input int) string {
 	} else if millions > 1 {
 		millionStr := Entry.Translate(millions)
 		millionStr = strings.ReplaceAll(millionStr, "eins", "ein")
-		plural := getMillionPlural(millions)
+		plural := Entry.getMillionPlural(millions)
 		millionPart = fmt.Sprintf("%s %s", millionStr, plural)
 	}
 
@@ -113,7 +113,7 @@ func (Entry EntryDe) handleMillions(Input int) string {
 	return fmt.Sprintf("%s %s", millionPart, remStr)
 }
 
-func getMillionPlural(n int) string {
+func (Entry EntryDe) getMillionPlural(n int) string {
 	if n == 1 {
 		return "Million"
 	}
@@ -130,7 +130,7 @@ func (Entry EntryDe) handleBillions(Input int) string {
 	} else if billions > 1 {
 		billionStr := Entry.Translate(billions)
 		billionStr = strings.ReplaceAll(billionStr, "eins", "ein")
-		plural := getBillionPlural(billions)
+		plural := Entry.getBillionPlural(billions)
 		billionPart = fmt.Sprintf("%s %s", billionStr, plural)
 	}
 
@@ -142,7 +142,7 @@ func (Entry EntryDe) handleBillions(Input int) string {
 	return fmt.Sprintf("%s %s", billionPart, remStr)
 }
 
-func getBillionPlural(n int) string {
+func (Entry EntryDe) getBillionPlural(n int) string {
 	if n == 1 {
 		return "Milliarde"
 	}
@@ -150,8 +150,8 @@ func getBillionPlural(n int) string {
 }
 
 func (Entry EntryDe) handleTrillions(Input int) string {
-	trillions := Input / 1000000000000
-	remainder := Input % 1000000000000
+	trillions := int(int64(Input) / 1000000000000)
+	remainder := int(int64(Input) % 1000000000000)
 
 	var trillionPart string
 	if trillions == 1 {
@@ -159,7 +159,7 @@ func (Entry EntryDe) handleTrillions(Input int) string {
 	} else if trillions > 1 {
 		trillionStr := Entry.Translate(trillions)
 		trillionStr = strings.ReplaceAll(trillionStr, "eins", "ein")
-		plural := getTrillionPlural(trillions)
+		plural := Entry.getTrillionPlural(trillions)
 		trillionPart = fmt.Sprintf("%s %s", trillionStr, plural)
 	}
 
@@ -171,7 +171,7 @@ func (Entry EntryDe) handleTrillions(Input int) string {
 	return fmt.Sprintf("%s %s", trillionPart, remStr)
 }
 
-func getTrillionPlural(n int) string {
+func (Entry EntryDe) getTrillionPlural(n int) string {
 	if n == 1 {
 		return "Billion"
 	}

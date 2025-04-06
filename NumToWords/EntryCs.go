@@ -29,7 +29,7 @@ func (Entry EntryCs) Translate(Input int) string {
 		result = Entry.handleThousands(Input)
 	case Input < 1000000000:
 		result = Entry.handleMillions(Input)
-	case Input < 1000000000000:
+	case int64(Input) < 1000000000000:
 		result = Entry.handleBillions(Input)
 	default:
 		result = Entry.handleTrillions(Input)
@@ -98,7 +98,7 @@ func (Entry EntryCs) handleMillions(Input int) string {
 	millions := Input / 1000000
 	remainder := Input % 1000000
 	millionsStr := Entry.Translate(millions)
-	plural := getMillionPlural(millions)
+	plural := Entry.getMillionPlural(millions)
 	if remainder == 0 {
 		return fmt.Sprintf("%s %s", millionsStr, plural)
 	}
@@ -106,7 +106,7 @@ func (Entry EntryCs) handleMillions(Input int) string {
 	return fmt.Sprintf("%s %s %s", millionsStr, plural, remStr)
 }
 
-func getMillionPlural(n int) string {
+func (Entry EntryCs) getMillionPlural(n int) string {
 	if n == 1 {
 		return "milion"
 	}
@@ -125,7 +125,7 @@ func (Entry EntryCs) handleBillions(Input int) string {
 	billions := Input / 1000000000
 	remainder := Input % 1000000000
 	billionsStr := Entry.Translate(billions)
-	plural := getBillionPlural(billions)
+	plural := Entry.getBillionPlural(billions)
 	if remainder == 0 {
 		return fmt.Sprintf("%s %s", billionsStr, plural)
 	}
@@ -133,7 +133,7 @@ func (Entry EntryCs) handleBillions(Input int) string {
 	return fmt.Sprintf("%s %s %s", billionsStr, plural, remStr)
 }
 
-func getBillionPlural(n int) string {
+func (Entry EntryCs) getBillionPlural(n int) string {
 	if n == 1 {
 		return "miliarda"
 	}
@@ -149,10 +149,10 @@ func getBillionPlural(n int) string {
 }
 
 func (Entry EntryCs) handleTrillions(Input int) string {
-	trillions := Input / 1000000000000
-	remainder := Input % 1000000000000
+	trillions := int(int64(Input) / 1000000000000)
+	remainder := int(int64(Input) % 1000000000000)
 	trillionsStr := Entry.Translate(trillions)
-	plural := getTrillionPlural(trillions)
+	plural := Entry.getTrillionPlural(trillions)
 	if remainder == 0 {
 		return fmt.Sprintf("%s %s", trillionsStr, plural)
 	}
@@ -160,7 +160,7 @@ func (Entry EntryCs) handleTrillions(Input int) string {
 	return fmt.Sprintf("%s %s %s", trillionsStr, plural, remStr)
 }
 
-func getTrillionPlural(n int) string {
+func (Entry EntryCs) getTrillionPlural(n int) string {
 	if n == 1 {
 		return "bilion"
 	}

@@ -29,7 +29,7 @@ func (Entry EntryHu) Translate(Input int) string {
 		result = Entry.handleThousands(Input)
 	case Input < 1000000000:
 		result = Entry.handleMillions(Input)
-	case Input < 1000000000000:
+	case int64(Input) < 1000000000000:
 		result = Entry.handleBillions(Input)
 	default:
 		result = Entry.handleTrillions(Input)
@@ -127,8 +127,8 @@ func (Entry EntryHu) handleBillions(Input int) string {
 }
 
 func (Entry EntryHu) handleTrillions(Input int) string {
-	trillions := Input / 1000000000000
-	remainder := Input % 1000000000000
+	trillions := int(int64(Input) / 1000000000000)
+	remainder := int(int64(Input) % 1000000000000)
 
 	trillionsStr := Entry.getMultiplierForm(Entry.Translate(trillions))
 	
