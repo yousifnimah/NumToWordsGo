@@ -2,7 +2,6 @@ package NumToWords
 
 import (
 	"errors"
-	"fmt"
 )
 
 type NumToWord struct{}
