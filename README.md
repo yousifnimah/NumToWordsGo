@@ -11,6 +11,7 @@ NumToWordsGo is a lightweight and efficient Go library that provides a simple fu
 - Supports numbers up to billions
 - Efficient and easy-to-use
 - Supports two languages English and Arabic
+- Supprots other languages: Czech, German, Spanish, French, Hungarian, Polish, Russian, Slovak, Ukrainian
 
 ## Installation
 
