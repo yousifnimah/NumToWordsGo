@@ -2,7 +2,7 @@ package NumToWords
 
 import (
 	"fmt"
-	"github.com/yousifnimah/NumToWordsGo/NumToWords/locales"
+	"github.com/neurlang/NumToWordsGo/NumToWords/locales"
 	"strings"
 )
 
@@ -38,7 +38,7 @@ func (Entry *EntryAr) Translate(Input int) string {
 		{
 			Result = Entry.handleMillions(Input)
 		}
-	case Input < 1000000000000: //1000000000-9999999999
+	case int64(Input) < 1000000000000: //1000000000-9999999999
 		{
 			Result = Entry.handleBillions(Input)
 		}

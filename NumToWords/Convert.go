@@ -2,7 +2,6 @@ package NumToWords
 
 import (
 	"errors"
-	"fmt"
 )
 
 type NumToWord struct{}
@@ -26,7 +25,7 @@ func Convert(Input int, Language string) (string, error) {
 	Ent.BootstrapLanguage()
 
 	if IsZero(Input) {
-		fmt.Println("Input")
+		//fmt.Println("Input")
 		return Ent.ZeroResponse(), nil
 	}
 
@@ -40,6 +39,24 @@ func InitEntry(Language string) Entry {
 	switch Language {
 	case "ar":
 		ent = &EntryAr{}
+	case "cs":
+		ent = &EntryCs{}
+	case "de":
+		ent = &EntryDe{}
+	case "es":
+		ent = &EntryEs{}
+	case "fr":
+		ent = &EntryFr{}
+	case "hu":
+		ent = &EntryHu{}
+	case "pl":
+		ent = &EntryPl{}
+	case "ru":
+		ent = &EntryRu{}
+	case "sk":
+		ent = &EntrySk{}
+	case "uk":
+		ent = &EntryUk{}
 	default:
 		ent = &EntryEn{}
 	}

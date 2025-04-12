@@ -1,3 +1,3 @@
-module github.com/yousifnimah/NumToWordsGo
+module github.com/neurlang/NumToWordsGo
 
 go 1.20
