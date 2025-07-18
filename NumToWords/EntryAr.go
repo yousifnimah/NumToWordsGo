@@ -2,7 +2,7 @@ package NumToWords
 
 import (
 	"fmt"
-	"github.com/neurlang/NumToWordsGo/NumToWords/locales"
+	"github.com/yousifnimah/NumToWordsGo/NumToWords/locales"
 	"strings"
 )
 

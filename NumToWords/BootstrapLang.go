@@ -1,6 +1,6 @@
 package NumToWords
 
-import "github.com/neurlang/NumToWordsGo/NumToWords/locales"
+import "github.com/yousifnimah/NumToWordsGo/NumToWords/locales"
 
 func (Entry *EntryEn) BootstrapLanguage() {
 	Entry.Language = "en"
